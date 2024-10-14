@@ -5,8 +5,12 @@ export const routes: Routes = [
         path: "",
         loadComponent: ()=> import("./pages/inicio/layout-inicio/layout-inicio.component"),
         children: [
-            {
+            {   
                 path: "inicio",
+                loadComponent: () => import("./pages/inicio/pantalla-inicio/pantalla-inicio.component"),
+            },
+            {
+                path: "",
                 loadComponent: () => import("./pages/inicio/pantalla-inicio/pantalla-inicio.component"),
             }
         ]
