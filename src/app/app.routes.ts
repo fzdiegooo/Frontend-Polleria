@@ -5,13 +5,30 @@ export const routes: Routes = [
         path: "",
         loadComponent: ()=> import("./pages/inicio/layout-inicio/layout-inicio.component"),
         children: [
-            {   
-                path: "inicio",
-                loadComponent: () => import("./pages/inicio/pantalla-inicio/pantalla-inicio.component"),
+            {
+                path:'inicio',
+                loadComponent: () => import('./pages/inicio/pantalla-inicio/pantalla-inicio.component')
             },
             {
-                path: "",
-                loadComponent: () => import("./pages/inicio/pantalla-inicio/pantalla-inicio.component"),
+                path:'carta',
+                loadComponent: () => import('./pages/inicio/carta/carta.component')
+            },
+            {
+                path: 'promociones',
+                loadComponent: () => import('./pages/inicio/carta/carta.component')
+            },
+            {
+                path: 'login',
+                loadComponent: () => import('./pages/inicio/auth/login/login.component')
+            },
+            {
+                path: 'register',
+                loadComponent: () => import('./pages/inicio/auth/register/register.component')
+            },
+            {
+              path: "",
+              redirectTo: 'inicio',
+              pathMatch: 'full'
             }
         ]
     },

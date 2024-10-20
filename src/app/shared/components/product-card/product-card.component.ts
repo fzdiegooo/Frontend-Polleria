@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-product-card',
@@ -7,6 +7,17 @@ import { Component } from '@angular/core';
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
-export class ProductCardComponent {
+export default class ProductCardComponent {
+  @Input() imgProducto: string = ""
+  @Input() nombreProducto: string = ""
+  @Input() precioProducto: number = 0
 
+
+  constructor() {
+    
+  }
+
+  
+
+  
 }

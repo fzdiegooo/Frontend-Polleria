@@ -1,0 +1,20 @@
+<div class="w-full h-full grid grid-cols-[15%_85%]">
+    <div class="pt-5 pl-8">
+        <h2 class="font-semibold text-3xl text-red-700">Filtros</h2>
+        <ul>
+            @for (categoria of categorias; track $index) {
+                <li class="cursor-pointer" (click)="getProductosByCategoria(categoria.nombre)">
+                    {{categoria.nombre}}
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="p-5">
+        <h2 class="font-semibold text-3xl text-red-700">{{categoriaNombre}}</h2>
+        <div class="flex flex-wrap gap-14 mt-5">
+            @for (producto of productos; track $index) {
+                <app-product-card [imgProducto]="producto.urlImg" [nombreProducto]="producto.nombre" [precioProducto]="producto.precio"/>
+            }
+        </div>
+    </div>
+</div>
