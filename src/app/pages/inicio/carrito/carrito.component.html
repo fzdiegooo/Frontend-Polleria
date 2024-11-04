@@ -1,0 +1,18 @@
+@if (isOpen) {
+    <div [ngClass]="{'modal-enter': isOpen, 'modal-exit': !isOpen}" class="w-96 grid grid-rows-[10%_1fr_20%] bg-white h-[calc(100%-73px)] fixed top-[73px] right-0 z-50">
+        <div class="bg-red-700 flex justify-start items-center px-5">
+            <i (click)="cerrarCarrito()" class='bx bx-x-circle text-white font-semibold text-[1.5rem] cursor-pointer' ></i>
+            <p class="text-white font-semibold text-lg pl-2">Carrito de Compras</p>
+            
+        </div>
+        <div class="overflow-scroll p-3 flex flex-col gap-3">
+            @for (producto of productosCarrito; track $index) {
+                <app-product-card2 [producto]="producto" />
+            }
+        </div>
+        <div class="flex flex-col justify-center px-5">
+            <button class="bg-red-700 text-white py-2 px-4 rounded-lg font-semibold">Realizar Compra</button>
+            <button class="mt-2">Seguir Comprando</button>
+        </div>
+    </div>
+}

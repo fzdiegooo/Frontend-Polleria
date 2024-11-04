@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Producto } from '../../models/Producto';
+import { CarritoService } from '../../../core/services/carrito.service';
 
 @Component({
   selector: 'app-product-card',
@@ -8,16 +10,17 @@ import { Component, Input } from '@angular/core';
   styleUrl: './product-card.component.css'
 })
 export default class ProductCardComponent {
+  @Input() producto: any;
+
   @Input() imgProducto: string = ""
   @Input() nombreProducto: string = ""
   @Input() precioProducto: number = 0
 
 
-  constructor() {
-    
+  constructor(private carritoService: CarritoService) {}
+
+  agregarProducto(producto:Producto) {
+    this.carritoService.agregarProducto(producto)
   }
-
-  
-
   
 }

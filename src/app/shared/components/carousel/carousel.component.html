@@ -7,7 +7,7 @@
         @if (typeCard === "product") {
             @for (item of items; track $index) {
                 <swiper-slide >
-                    <app-product-card  [nombreProducto]="item.nombre" [imgProducto]="item.urlImg" [precioProducto]="item.precio"></app-product-card>
+                    <app-product-card [producto]="item"  [nombreProducto]="item.nombre" [imgProducto]="item.urlImg" [precioProducto]="item.precio"></app-product-card>
                 </swiper-slide>
             }
         }@else if (typeCard === "category") {

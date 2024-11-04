@@ -5,11 +5,12 @@ import { Producto } from '../../../shared/models/Producto';
 import { CarouselComponent } from "../../../shared/components/carousel/carousel.component";
 import { BehaviorSubject } from 'rxjs';
 import ProductCardComponent from '../../../shared/components/product-card/product-card.component';
+import CarritoComponent from "../carrito/carrito.component";
 
 @Component({
   selector: 'app-pantalla-inicio',
   standalone: true,
-  imports: [ProductCardComponent, CarouselComponent],
+  imports: [ProductCardComponent, CarouselComponent, CarritoComponent],
   templateUrl: './pantalla-inicio.component.html',
   styleUrl: './pantalla-inicio.component.css'
 })

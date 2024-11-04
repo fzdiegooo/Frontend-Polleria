@@ -25,6 +25,8 @@ export default class CartaComponent  implements OnInit{
   ngOnInit(): void {
     this.getCategorias();
     this.getProductosByCategoria("Promociones");
+    console.log(this.productos);
+    
   }
 
   getCategorias(){

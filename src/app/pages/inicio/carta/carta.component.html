@@ -13,7 +13,7 @@
         <h2 class="font-semibold text-3xl text-red-700">{{categoriaNombre}}</h2>
         <div class="flex flex-wrap gap-14 mt-5">
             @for (producto of productos; track $index) {
-                <app-product-card [imgProducto]="producto.urlImg" [nombreProducto]="producto.nombre" [precioProducto]="producto.precio"/>
+                <app-product-card [producto]="producto" [imgProducto]="producto.urlImg" [nombreProducto]="producto.nombre" [precioProducto]="producto.precio"/>
             }
         </div>
     </div>

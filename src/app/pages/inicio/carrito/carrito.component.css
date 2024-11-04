@@ -1,27 +1,31 @@
 @keyframes slideInFromRight {
     0% {
-      transform: translateX(-200px);
-      
+      transform: translateX(100%);
+
     }
     100% {
       transform: translateX(0);
-      
+
     }
   }
 
   @keyframes slideOutToRight {
     0% {
       transform: translateX(0);
+
     }
     100% {
-      transform: translateX(-200px);
+      transform: translateX(100%);
+
     }
   }
 
-  .modal-izquierda {
+  .modal-enter {
     animation: slideInFromRight 0.5s forwards;
+    transform: translateZ(0);
   }
 
-  .modal-derecha {
+  .modal-exit {
     animation: slideOutToRight 0.5s forwards;
+    transform: translate3d(100%, 0, 0);
   }

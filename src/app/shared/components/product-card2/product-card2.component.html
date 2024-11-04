@@ -1,0 +1,23 @@
+<div class="w-full h-full flex shadowPersonalizada rounded-md p-2 relative">
+    <div class="flex flex-col justify-center items-center">
+        <div class="border-2 h-full rounded-md w-12 grid grid-rows-3 place-content-center ">
+            <button (click)="aumentarCantidad(producto)">
+                <i class='bx bx-plus text-gray-400' ></i>
+            </button>
+            <p class="text-center">{{producto.cantidad}}</p>
+            <button>
+                <i class='bx bx-minus text-gray-400' ></i>
+            </button>
+        </div>
+    </div>
+    <div class="flex justify-center px-2 items-center">
+        <img class="w-24 h-24  rounded-md" [src]="producto.urlImg" alt="">
+    </div>
+    <div class="flex flex-col justify-start items-start pt-2">
+        <p class="font-semibold">{{producto.nombre}}</p>
+        <p>S/ {{producto.precio}}</p>
+    </div>
+    <div class="absolute bottom-2 right-2">
+        <i class='bx bx-trash text-lg cursor-pointer text-red-700' ></i>
+    </div>
+</div>
