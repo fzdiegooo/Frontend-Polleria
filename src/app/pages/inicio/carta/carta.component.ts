@@ -7,6 +7,9 @@ import { Producto } from '../../../shared/models/Producto';
 import { environment } from '../../../../environments/enviroment';
 import { HttpClient } from '@angular/common/http';
 import ProductCardComponent from "../../../shared/components/product-card/product-card.component";
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductosService } from '../../../core/services/productos.service';
+
 
 @Component({
   selector: 'app-carta',
@@ -20,13 +23,16 @@ export default class CartaComponent  implements OnInit{
   productos:Producto[] = [];
   categoriaNombre:string = "";
   urlProductos = environment.apiUrl + "/productos";
-  constructor(private categoria: CategoriasService, private http:HttpClient){}
+  constructor(private categoria: CategoriasService,private producto:ProductosService, private http:HttpClient, private route: ActivatedRoute, private router:Router){}
 
   ngOnInit(): void {
     this.getCategorias();
-    this.getProductosByCategoria("Promociones");
-    console.log(this.productos);
-    
+
+    this.route.queryParams.subscribe(params => {
+      const categoria = params['categoria'] || "Promociones";
+      this.filtrarProductos(categoria);
+    });
+
   }
 
   getCategorias(){
@@ -35,7 +41,7 @@ export default class CartaComponent  implements OnInit{
     });
   }
 
-  getProductosByCategoria(categoria: string): void {
+  filtrarProductos(categoria: string){
     this.http.get<Producto[]>(this.urlProductos + "/filter", { params: { categorias: [categoria] } })
       .subscribe((data: Producto[]) => {
         this.productos = data; 
@@ -43,4 +49,10 @@ export default class CartaComponent  implements OnInit{
         console.log(this.productos); 
       });
   }
+
+  getProductosByCategoria(categoriaNombre: string){
+    this.producto.goCartWithCategory(categoriaNombre); 
+  }
+
+
 }

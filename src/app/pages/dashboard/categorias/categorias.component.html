@@ -1,1 +1,16 @@
-<p>categorias works!</p>
+<div class="w-full h-full p-5">
+    <div class="flex justify-between items-center">
+        <div>
+            <p class="text-3xl font-bold">{{title}}</p>
+            <p class="text-sm mb-2">{{description}}</p>
+        </div>
+        <button (click)="toggleSidebar()" class="bg-red-800 text-white font-bold px-6 py-2 flex items-center rounded-md gap-2">
+            <i class='bx bx-plus font-bold text-lg'></i>
+            Agregar
+        </button>
+    </div>
+    <app-table-action [titulo]="title" [data]="categoriasFiltradas" [columns]="columnas" [nombreColumns]="nombreColumnas"  (action)="onAction($event)"></app-table-action>
+    @if (isActive) {
+        <app-form-agregar-categoria (categoriaNueva)="actualizarListaCategoria($event)"></app-form-agregar-categoria>
+    }
+</div>

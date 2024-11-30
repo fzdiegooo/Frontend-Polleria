@@ -14,7 +14,7 @@
             @for (item of items; track $index) {
                 <swiper-slide>
                   <div class="m-auto">
-                    <app-category-card [curso]="item"></app-category-card>
+                    <app-category-card [categoria]="item" [nombreCategoria]="item.nombre" [imgCategoria]="item.urlImg"></app-category-card>
                   </div>
                 </swiper-slide>
             }

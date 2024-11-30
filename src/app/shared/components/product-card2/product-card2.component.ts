@@ -18,5 +18,16 @@ export default class ProductCard2Component {
     this.producto.cantidad++
   }
 
+  disminuirCantidad(producto: Producto){
+    this.carritoService.quitarProducto(producto);
+    this.producto.cantidad--
+  }
+
+  eliminarProducto(producto:Producto){
+    this.carritoService.eliminarProducto(producto)
+    this.producto.cantidad = 0
+    
+  }
+
 
 }

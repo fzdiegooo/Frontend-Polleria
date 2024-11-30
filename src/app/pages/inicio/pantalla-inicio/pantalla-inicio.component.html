@@ -38,8 +38,11 @@
         </span>
     </button>
 </div>
-<div class="flex justify-center">
-    <app-carousel [items]="productosList" [title]="title" [typeCard]="typeCard" />
+<div class="flex justify-center w-full">
+    <app-carousel2 [items]="categoriaList" [typeCard]="typeCardCategory" [title]="titleCategory" [cantMax]="3"/>
+</div>
+<div class="flex justify-center w-full">
+    <app-carousel2 [items]="productosList" [typeCard]="typeCard" [title]="title" [cantMax]="4" />
 </div>
 
 

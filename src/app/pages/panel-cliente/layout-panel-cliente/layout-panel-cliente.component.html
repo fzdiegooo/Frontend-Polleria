@@ -1,1 +1,36 @@
-<p>layout-panel-cliente works!</p>
+<div class="w-full h-full grid grid-cols-[20%_80%] p-5">
+  <div class="bg-red-700 rounded-xl">
+    <ul class="flex flex-col p-4 gap-2">
+      <li
+      routerLink="/cliente/perfil"
+      routerLinkActive="bg-white text-red-700"
+      class="rounded-md px-3 py-2 font-semibold cursor-pointer text-black hover:bg-white hover:text-red-700 text-lg"
+      >
+        Perfil
+      </li>
+      <li
+        routerLink="/cliente/direccion"
+        routerLinkActive="bg-white text-red-700"
+        class="rounded-md px-3 py-2 font-semibold cursor-pointer text-black hover:bg-white hover:text-red-700 text-lg"
+      >
+        Direcciones
+      </li>
+      <li
+        routerLink="/cliente/pedidos"
+        routerLinkActive="bg-white text-red-700"
+        class="rounded-md px-3 py-2 font-semibold cursor-pointer text-black hover:bg-white hover:text-red-700 text-lg"
+      >
+        Pedidos
+      </li>
+      <li
+        (click)="cerrarSesion()"
+        class="rounded-md px-3 py-2 font-semibold cursor-pointer text-black hover:bg-white hover:text-red-700 text-lg"
+      >
+        Cerrar Sesión
+      </li>
+    </ul>
+  </div>
+  <div class="pl-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>

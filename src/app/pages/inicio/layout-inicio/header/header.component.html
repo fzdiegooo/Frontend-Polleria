@@ -51,10 +51,24 @@
     </div>
     </div>
     <div class="flex gap-6 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-      <button routerLink="/login" routerLinkActive="md:text-gray-900" class="font-semibold">
-        <i class='bx bx-user'></i>
-        INGRESA O REGÍSTRATE
-      </button>
+      @if (!rolUser || rolUser == '') {
+        <button routerLink="/login" routerLinkActive="md:text-gray-900" class="font-semibold">
+          <i class='bx bx-user'></i>
+          INGRESA O REGÍSTRATE
+        </button>
+      }
+      @if (rolUser === "Administrador") {
+        <button routerLink="/dashboard" routerLinkActive="md:text-gray-900" class="font-semibold">
+          <i class='bx bx-user'></i>
+          INGRESAR DASHBOARD
+        </button>
+      }
+      @if (rolUser === "Cliente") {
+        <button routerLink="/cliente/perfil" routerLinkActive="md:text-gray-900" class="font-semibold">
+          <i class='bx bx-user'></i>
+          PANEL CLIENTE
+        </button>
+      }
       <button
         (click)="toggle()"
         type="button"

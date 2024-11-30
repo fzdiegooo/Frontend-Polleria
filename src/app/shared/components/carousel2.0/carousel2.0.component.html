@@ -1,0 +1,21 @@
+<div class="xl:max-w-screen-xl lg:max-w-screen-lg md:max-w-screen-md sm:max-w-sm max-w-[19rem] py-5">
+    <h2 class="text-xl md:text-2xl font-bold ml-5 py-4">{{title}}</h2>
+    <p-carousel 
+        [value]="items" 
+        [numVisible]="cantMax" 
+        [numScroll]="1" 
+        [circular]="true" 
+        [responsiveOptions]="responsiveOptions">
+
+        
+        @if (typeCard === "product") {
+            <ng-template let-item pTemplate="item">
+                    <app-product-card class="flex justify-center" [producto]="item"></app-product-card>
+                </ng-template>
+            }@else if (typeCard === "category") {
+                <ng-template let-item pTemplate="item">
+                    <app-category-card class="flex justify-center" [categoria]="item"></app-category-card>
+                </ng-template>
+            }
+    </p-carousel>
+</div>

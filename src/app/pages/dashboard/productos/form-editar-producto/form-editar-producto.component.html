@@ -1,0 +1,75 @@
+<app-dinamic-sidebar>
+    <div class="w-full h-full p-5">
+        <div class="flex justify-between">
+            <p class="text-2xl font-bold">Editar Producto</p>
+            <button (click)="toggleSidebar()" >
+                <i class='bx bx-x text-4xl'></i>
+            </button>
+        </div>
+        
+        <form [formGroup]="form" (ngSubmit)="editarProducto()">
+            <div class="flex flex-wrap gap-4 mt-4">
+                <div class="w-full">
+                    <label for="nombre" class="text-sm">Nombre</label>
+                    <input formControlName="nombre" type="text" id="nombre" class="w-full border border-gray-300 rounded-md p-2">
+                </div>
+                <div class="w-full">
+                    <label for="descripcion" class="text-sm">Descripción</label>
+                    <textarea formControlName="descripcion" name="" id="descripcion" cols="30" rows="3" class="w-full border border-gray-300 rounded-md p-2"></textarea>
+                </div>
+                <div class="w-full grid grid-cols-2 gap-5">
+                    <div>
+                        <label for="precio" class="text-sm">Precio</label>
+                        <input formControlName="precio" type="number" id="precio" class="w-full border border-gray-300 rounded-md p-2">
+                    </div>
+                    <div>
+                        <label for="stock" class="text-sm">Stock</label>
+                        <input type="number" id="stock" class="w-full border border-gray-300 rounded-md p-2">
+                    </div>
+                </div>
+                <div class="w-full grid grid-cols-2 gap-5">
+                    <div>
+                        <label for="categoria" class="text-sm">Categoría</label>
+                        <select formControlName="categoriaId" name="" id="categoria" class="w-full border border-gray-300 rounded-md p-2">
+                            <option value="0">Seleccione una categoría</option>
+                            @for (categoria of listaCategorias; track $index) {
+                                <option [value]="categoria.id">{{categoria.nombre}}</option>
+                            }
+                        </select>
+                    </div>
+                    <div>
+                        <label for="estado" class="text-sm">Estado</label>
+                        <select name="" id="estado" class="w-full border border-gray-300 rounded-md p-2">
+                            <option value="0">Estado del producto</option>
+                            <option value="1">Fuera de stock</option>
+                            <option value="2">Visible</option>
+                            <!-- @for (categoria of listaCategorias; track $index) {
+                                <option [value]="categoria.id">{{categoria.nombre}}</option>
+                            } -->
+                        </select>
+                    </div>
+                </div>
+                @if(productoEditar.urlImg){
+                    <div class="w-full flex justify-center relative " id="imgEditar">
+                        <img class="w-full max-h-48 3xl:max-h-72 object-contain" src="{{productoEditar.urlImg}}" alt="{{productoEditar.nombre}}">
+                        <button (click)="borrarImagen()" type="button" class="rounded-full w-10 h-10" id="hoverImgEditar">
+                            <i class='bx bx-x text-3xl'></i>
+                        </button>
+                    </div>
+                }@else {
+                    <div class="w-full">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Imagen</label>
+                        <input (change)="onFileSelected($event)" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none " aria-describedby="file_input_help" id="file_input" type="file">
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG o WEBP (MAX. 2MB).</p>
+                    </div>
+                }
+                <div class="w-full">
+                    <button type="submit"  class="bg-red-800 w-full text-white font-bold px-6 py-2 flex justify-center items-center  rounded-md gap-2">
+                        Guardar Cambios
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</app-dinamic-sidebar>
+

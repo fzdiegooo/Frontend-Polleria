@@ -1,4 +1,7 @@
 import { Routes } from '@angular/router';
+import { isLoggedGuard } from './core/guards/auth/is-logged.guard';
+import { hasRoleGuard } from './core/guards/auth/has-role.guard';
+import { hasRoleAllowGuard } from './core/guards/auth/has-role-allow.guard';
 
 export const routes: Routes = [
     {
@@ -26,6 +29,38 @@ export const routes: Routes = [
                 loadComponent: () => import('./pages/inicio/auth/register/register.component')
             },
             {
+                path: 'producto/:id',
+                loadComponent: () => import('./pages/inicio/producto/producto.component')
+            },
+            {
+                path: 'checkout-payment',
+                loadComponent: () => import('./pages/inicio/checkout-payment/checkout-payment.component')
+            },
+            {
+                canMatch: [isLoggedGuard, hasRoleGuard],
+                canActivate: [hasRoleAllowGuard],
+                path: 'cliente',
+                loadComponent: () => import('./pages/panel-cliente/layout-panel-cliente/layout-panel-cliente.component'),
+                children:[
+                    {
+                        path:'',
+                        loadComponent: () => import('./pages/panel-cliente/inicio-panel-cliente/inicio-panel-cliente.component')
+                    },
+                    {
+                        path:'perfil',
+                        loadComponent: () => import('./pages/panel-cliente/inicio-panel-cliente/inicio-panel-cliente.component')
+                    },
+                    {
+                        path:'pedidos',
+                        loadComponent: () => import('./pages/panel-cliente/pedidos-cliente/pedidos-cliente.component')
+                    }
+                ],
+                data:{
+                    title: 'Panel Cliente',
+                    roles: ['Cliente']
+                }
+            },
+            {
               path: "",
               redirectTo: 'inicio',
               pathMatch: 'full'
@@ -34,15 +69,13 @@ export const routes: Routes = [
     },
     {
         path: "dashboard",
+        canMatch: [isLoggedGuard, hasRoleGuard],
+        canActivate: [hasRoleAllowGuard],
         loadChildren: ()=> import("./pages/dashboard/dashboard.routes").then(m => m.DashboardRoutesModule),
         data:{
             title: 'Dashboard',
-            roles: ['administrador', 'empleado']
+            roles: ['Administrador']
         }
-    },
-    {
-        path: "panel-cliente",
-        loadChildren: () => import("./pages/panel-cliente/panel-cliente.routes").then(m => m.PanelClienteRoutesModule),
     },
     {
         path: "**",

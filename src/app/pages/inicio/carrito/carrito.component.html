@@ -6,13 +6,29 @@
             
         </div>
         <div class="overflow-scroll p-3 flex flex-col gap-3">
+            @if (!isEmpty || isEmpty === 0) {
+                <div class="h-full flex flex-col items-center justify-center">
+                    <svg width="100px" height="100px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 5L19 12H7.37671M20 16H8L6 3H3M11 3L13.5 5.5M13.5 5.5L16 8M13.5 5.5L16 3M13.5 5.5L11 8M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#BABABA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Carrito Vacio</p>
+                </div>
+            }
             @for (producto of productosCarrito; track $index) {
-                <app-product-card2 [producto]="producto" />
+                @if (producto.cantidad > 0) {
+                    <app-product-card2 [producto]="producto" />
+                }
             }
         </div>
-        <div class="flex flex-col justify-center px-5">
-            <button class="bg-red-700 text-white py-2 px-4 rounded-lg font-semibold">Realizar Compra</button>
-            <button class="mt-2">Seguir Comprando</button>
+        <div class="flex flex-col gap-2">
+            <div class="flex justify-between px-5">
+                <p class="font-semibold">Total</p>
+                <p class="font-semibold">S/. {{totalCarrito}}</p>
+            </div>
+            <div class="flex flex-col justify-center px-5">
+                <button (click)="irPagar()" class="bg-red-700 text-white py-2 px-4 rounded-lg font-semibold">Realizar Compra</button>
+                <button (click)="irCarta()" class="mt-2">Seguir Comprando</button>
+            </div>
         </div>
     </div>
 }

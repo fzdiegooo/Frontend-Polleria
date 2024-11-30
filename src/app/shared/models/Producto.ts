@@ -1,11 +1,16 @@
 import { Categoria } from "./Categoria";
 
 export interface Producto {
-    id: number;
+    id: string;
     nombre: string;
     descripcion: string;
     precio: number;
-    urlImg: string;
+    urlImg?: string;
     categoria: Categoria;
     cantidad?: number;
+    cloudinaryImageId?: string;
 } 
+
+export interface ProductoCarrito extends Producto {
+    cantidad: number;
+}

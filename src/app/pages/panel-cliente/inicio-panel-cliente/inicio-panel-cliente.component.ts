@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './inicio-panel-cliente.component.html',
   styleUrl: './inicio-panel-cliente.component.css'
 })
-export class InicioPanelClienteComponent {
+export default class InicioPanelClienteComponent {
 
 }

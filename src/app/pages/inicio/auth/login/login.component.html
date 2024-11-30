@@ -1,6 +1,6 @@
 <section class="bg-white dark:bg-gray-900">
     <div class="container flex items-center lg:-mt-8 2xl:-mt-16 justify-center min-h-screen px-6 mx-auto">
-        <form class="w-full max-w-2xl">
+        <form [formGroup]="formLogin" (ngSubmit)="login()" class="w-full max-w-2xl">
             <div class="flex justify-center mx-auto">
                 <img class="w-auto h-10 sm:h-14" src="logo-pollon.png" alt="">
             </div>
@@ -23,7 +23,7 @@
                         </svg>
                     </span>
     
-                    <input type="email" class="block py-3 w-80 md:w-96 text-gray-700 bg-white border rounded-lg px-11 focus:ring-red-400 focus:border-red-600" placeholder="Correo electrónico">
+                    <input formControlName="username" type="email" class="block py-3 w-80 md:w-96 text-gray-700 bg-white border rounded-lg px-11 focus:ring-red-400 focus:border-red-600" placeholder="Correo electrónico">
                 </div>
                 <div class="relative flex items-center ">
                     <span class="absolute">
@@ -32,13 +32,15 @@
                         </svg>
                     </span>
     
-                    <input type="password" class="block py-3 w-80 md:w-96 text-gray-700 bg-white border rounded-lg px-11 focus:ring-red-400 focus:border-red-600" placeholder="Password">
+                    <input formControlName="password" type="password" class="block py-3 w-80 md:w-96 text-gray-700 bg-white border rounded-lg px-11 focus:ring-red-400 focus:border-red-600" placeholder="Password">
                 </div>
-    
+                @if (errorCredentials) {
+                    <p class="text-red-700 text-sm text-start w-80 md:w-96 -my-4">Correo o contraseña incorrectas</p>
+                }
             </form>   
 
             <div class="mt-6 max-w-sm mx-auto">
-                <button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-700 rounded-lg hover:bg-red-800 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-50">
+                <button type="submit" class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-700 rounded-lg hover:bg-red-800 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-50">
                     Iniciar Sesión
                 </button>
 

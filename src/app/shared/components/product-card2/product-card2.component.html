@@ -5,7 +5,7 @@
                 <i class='bx bx-plus text-gray-400' ></i>
             </button>
             <p class="text-center">{{producto.cantidad}}</p>
-            <button>
+            <button (click)="disminuirCantidad(producto)">
                 <i class='bx bx-minus text-gray-400' ></i>
             </button>
         </div>
@@ -17,7 +17,7 @@
         <p class="font-semibold">{{producto.nombre}}</p>
         <p>S/ {{producto.precio}}</p>
     </div>
-    <div class="absolute bottom-2 right-2">
+    <div (click)="eliminarProducto(producto)" class="absolute bottom-2 right-2">
         <i class='bx bx-trash text-lg cursor-pointer text-red-700' ></i>
     </div>
 </div>

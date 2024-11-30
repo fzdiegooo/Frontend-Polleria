@@ -1,0 +1,121 @@
+<div class="w-full h-full p-5 bg-gray-100 flex justify-center items-center gap-10">
+    <div class="max-w-full w-[700px] h-[590px] 3xl:h-[690px] border bg-white border-[#d8d8d8] p-5 rounded-md flex flex-col items-center">
+        <h2 class="font-bold text-xl">Finalizar Compra</h2>
+        <div class="my-3">
+            <p class="text-center text-gray-500 font-semibold">Tipo de comprobante</p>
+            <form [formGroup]="tipoComprobante" class="flex gap-20">
+                <div class="flex items-center gap-2">
+                    <input formControlName="optionComprobante" value="boleta" type="radio" id="boleta" name="optionComprobante" checked>
+                    <label for="boleta">Boleta</label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input formControlName="optionComprobante" value="factura" type="radio" id="factura" name="optionComprobante">
+                    <label for="factura">Factura</label>
+                </div>
+            </form>
+        </div>
+        <h2 class="font-bold text-lg">Datos de facturación:</h2>
+        <form [formGroup]="formFacturacion" class="grid grid-cols-2 gap-5">
+            <div class="flex flex-col">
+                <label class="font-bold" for="nombre">Nombre</label>
+                <input formControlName="nombre" type="text" id="nombre" name="nombre" class="w-72 rounded-md focus:ring-red-400 focus:border-red-600" placeholder="Ingrese su nombre">
+                @if (formFacturacion.get('nombre')?.hasError('required') && formFacturacion.get('nombre')?.touched) {
+                    <p class="text-red-700 text-sm">Este campo es requerido</p>
+                }
+            </div>
+            <div class="flex flex-col">
+                <label class="font-bold" for="apellido">Apellidos</label>
+                <input formControlName="apellidos" type="text" id="apellido" name="apellido" class="w-72 rounded-md focus:ring-red-400 focus:border-red-600" placeholder="Ingrese sus apellidos">
+                @if (formFacturacion.get('apellidos')?.hasError('required') && formFacturacion.get('apellidos')?.touched) {
+                    <p class="text-red-700 text-sm">Este campo es requerido</p>
+                }
+            </div>
+            @if (tipoComprobante.get('optionComprobante')?.value === 'boleta') {
+                <div class="flex flex-col">
+                    <label class="font-bold" for="tipoDocumento">Tipo de Documento</label>
+                    <select formControlName="tipoDocumento" name="" id="tipoDocumento" class="w-72 rounded-md focus:ring-red-400 focus:border-red-600" >
+                        <option value=1>DNI</option>
+                        <option value=2>Carnet de Extranjería</option>
+                        <option value=3>Pasaporte</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-bold" for="numDoc">N° de Documento</label>
+                    <input formControlName="numeroDocumento" type="text" id="numDoc" name="numDoc" class="w-72 rounded-md focus:ring-red-400 focus:border-red-600" placeholder="Ingrese su N° de documento">
+                    @if (formFacturacion.get('numeroDocumento')?.hasError('required') && formFacturacion.get('numeroDocumento')?.touched) {
+                        <p class="text-red-700 text-sm">Este campo es requerido</p>
+                    }
+                </div>
+            }
+            @if (tipoComprobante.get('optionComprobante')?.value === 'factura') {
+                <div class="flex flex-col">
+                    <label class="font-bold" for="ruc">RUC</label>
+                    <input  (input)="obtenerRazonSocial()" formControlName="ruc" type="text" id="ruc" name="ruc" class="w-72 rounded-md focus:ring-red-400 focus:border-red-600" placeholder="Ingrese su ruc">
+                    <!-- validaciones -->
+                    @if (formFacturacion.get('ruc')?.hasError('required') && formFacturacion.get('ruc')?.touched) {
+                        <p class="text-red-700 text-sm">Este campo es requerido</p>
+                    }
+                    @if(formFacturacion.get('ruc')?.hasError('minlength') && formFacturacion.get('ruc')?.touched) {
+                        <p class="text-red-700 text-sm">El ruc debe tener 11 dígitos</p>
+                    }
+                    @if(formFacturacion.get('ruc')?.hasError('invalidRuc') && formFacturacion.get('ruc')?.touched) {
+                        <p class="text-red-700 text-sm">Número de ruc no válido</p>
+                    }
+
+                </div>
+                <div class="flex flex-col">
+                    <label class="font-bold" for="razonSocial">Razón Social</label>
+                    <input formControlName="razonSocial" type="text" id="razonSocial" name="razonSocial" class="w-72 rounded-md focus:ring-red-400 focus:border-red-600" placeholder="Ingrese primero su RUC">
+                    @if (formFacturacion.get('razonSocial')?.hasError('required') && formFacturacion.get('razonSocial')?.touched) {
+                        <p class="text-red-700 text-sm">Este campo es requerido</p>
+                    }
+                </div>
+            }
+            <div class="flex flex-col">
+                <label class="font-bold" for="correo">Correo</label>
+                <input formControlName="correo" type="text" id="correo" name="correo" class="w-72 rounded-md focus:ring-red-400 focus:border-red-600" placeholder="Ingrese su correo">
+                @if (formFacturacion.get('correo')?.hasError('required') && formFacturacion.get('correo')?.touched) {
+                    <p class="text-red-700 text-sm">Este campo es requerido</p>
+                }
+            </div>
+            <div class="flex flex-col">
+                <label class="font-bold" for="telefono">Teléfono</label>
+                <input formControlName="telefono" type="tel" id="telefono" name="telefono" class="w-72 rounded-md focus:ring-red-400 focus:border-red-600" placeholder="Ingrese su teléfono">
+                @if (formFacturacion.get('telefono')?.hasError('required') && formFacturacion.get('telefono')?.touched) {
+                    <p class="text-red-700 text-sm">Este campo es requerido</p>
+                }
+            </div>
+            <div class="flex flex-col">
+                <label class="font-bold" for="tipoEntrega">Tipo de Entrega</label>
+                <select formControlName="tipoEntrega" name="" id="tipoEntrega" class="w-72 rounded-md focus:ring-red-400 focus:border-red-600" >
+                    @for (item of tiposEntrega; track $index) {
+                        <option [value]="item.id">{{item.nombre}}</option>
+                    }
+                </select>
+            </div>
+            <div class="flex flex-col">
+                <label class="font-bold" for="tarjeta">Tarjeta</label>
+                <input type="text" id="tarjeta" name="tarjeta">
+            </div>
+            @if(formFacturacion.get('tipoEntrega')?.value == 2) {
+                <div class="flex flex-col">
+                    <label class="font-bold" for="direccion">Dirección</label>
+                    <input formControlName="direccion" type="text" id="direccion" name="direccion">
+                </div>
+            }
+        </form>
+    </div>
+    <div class="max-w-lg w-[500px] border h-[545px] 3xl:h-[690px] bg-white border-[#d8d8d8] p-5 rounded-md grid grid-rows-[10%_auto_10%_auto]">
+        <h2 class="font-bold text-xl w-full">Resumen de tu compra</h2>
+        <div class="flex flex-col max-h-full w-full gap-3 overflow-scroll p-2 overflow-x-hidden">
+            @for (producto of productosCarrito; track $index) {
+                <app-product-card2 [producto]="producto" />
+            }
+        </div>
+        <div class="w-full flex justify-between items-center">
+            <p class="font-bold text-lg">Total:</p>
+            <p class="font-bold text-lg">S/ {{totalCarrito}}</p>
+        </div>
+        <button (click)="onSubmit()" [disabled]="formFacturacion.invalid"  class="w-full h-12 bg-red-700 text-white rounded-md font-semibold disabled:bg-gray-400">Hacer Pedido</button>
+    </div>
+</div>
